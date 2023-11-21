@@ -19,5 +19,5 @@ mongoose
   });
 
 app.listen(port, () => {
-  console.log(`App is running on port ${port}...`);
+  console.log(`Moo! App is running on port ${port}...`);
 });
