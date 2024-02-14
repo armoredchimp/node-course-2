@@ -18,6 +18,20 @@ mongoose
     console.log('Moo! DB connected');
   });
 
-app.listen(port, () => {
+process.on('uncaughtException', (err) => {
+  console.log(err);
+  console.log('UNCAUGHT EXCEPTION! Terminating in 3..2..1..');
+  process.exit(1);
+});
+
+const server = app.listen(port, () => {
   console.log(`Moo! App is running on port ${port}...`);
+});
+
+process.on('unhandledRejection', (err) => {
+  console.log(err);
+  console.log('UNHANDLED REJECTION! Terminating in 3..2..1..');
+  server.close(() => {
+    process.exit(1);
+  });
 });
